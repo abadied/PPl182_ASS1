@@ -1,37 +1,107 @@
 
-# lang racket
+; lang racket
+
+; assigmnment 1
 (define vowels '( a e i o u))
 
-(define count-syllables
-    (lambda (l coutner last_flag)
-        (if (empty? l)
-            counter
-            (if (syallable? (car l) 
-                if(zero? last_flag
-                (count-syllables (cdr l) (+ counter 1) 1))
-                if
-                (count-syllables (cdr l) (counter) 1))
-                )
-            (count-syllables (cdr l) (counter) 0))))
+; Signature: count-syllables(l) 
+; Type: [List(String) -> Number] 
+; Purpose: count the number of syllables (not in a row). 
+; Pre-conditions:  
+; Tests: (count-syllables '(s o a r i n g)) => 2
+;        (count-syllables '(b e e p)) => 1
+;        (count-syllables '(e d e n)) => 2
+;        (count-syllables '(hello world)) => 3
+;        (count-syllables '()) => 0
 
-;(define syallable
-;    (lambda (vowels x)
-;        (if (equal? (x car vowels))
-;        1
- ;       if((equal? (x(car) (cdr vowels)))
- ;       1
-;        if((equal? (x(car) (cdr (cdr vowels))))
-;        1
-;        if((equal? (x(car) (cdr(cdr (cdr vowels)))))
-;        1
-;        if((equal? (x(car) (cdr(cdr(cdr (cdr vowels))))))
- ;       1
-  ;      0
-;        )))))
-;    )
-;)
+
+(define count-syllables
+    (lambda (l) (count-syllables-impl l 0 0)))
 
 (define syllable
-    (lambda (x)
-    (if(equal? x 'a) 1 0)))
+    (lambda (x vow) 
+    (if (empty? vow)
+        0
+        (if(equal? x (car vow))
+             1
+             (syllable x (cdr vow))))))
+
+
+
+(define count-syllables-impl
+    (lambda (l counter last_flag)
+        (if (empty? l)
+            counter
+            (if (not (zero? (syllable (car l) vowels))) 
+                (if(zero? last_flag)
+                    (count-syllables-impl (cdr l) (+ counter 1) 1)
+                    (count-syllables-impl (cdr l) counter 1))   
+                (count-syllables-impl (cdr l) counter 0)))))
+
+; assignment2
+
+; Signature: sorted?(l pro) 
+; Type: [List(Number) * function -> boolean] 
+; Purpose: check if the list is orderd by the definition of the given function. 
+; Pre-conditions: . 
+; Tests: (sorted? '(1 3 8) <) => #t
+;        (sorted? '(9 11 33 42) <) => #t
+;        (sorted? '() >) => #t - it will return true for every operation because for an empty list the condtion is emptily satisifed.
+;        (sorted? '(1) >) => #t - it will return true for every operation because for a one value list the condtion is emptily satisifed.
+;        (sorted? '(3 2 1) >) => #t
+;        (sorted? '(3 2 1) <) => #f
+
+(define sorted?
+    (lambda (l pro) 
+        (if (empty? l)
+            #t
+            (impl-sorted? (cdr l) (car l) pro))))
+
+(define impl-sorted? 
+    (lambda (l curr pro) 
+        (if (empty? l)
+            #t
+            (if (pro curr (car l))
+                (impl-sorted? (cdr l) (car l) pro)
+                #f))))
+
+; assignement3
+
+; Signature: merge(l1 l2) 
+; Type: [List(Number) * List(Number) -> List(Number)] 
+; Purpose: merge two monotonical lists into one. 
+; Pre-conditions: for every i and j such that i>j l1[j]<l1[i] and l2[j]<l2[i]. 
+; Tests: (merge '(1 3 8) '(2 5 6)) => '(1 2 3 5 6 8)
+;        (merge '(9 11 33 42) '(2 70 90)) => '(2 9 11 33 42 70 90)
+;        (merge '() '(2)) => '(2)
+;        (merge '() '()) => '()
+;        (merge '(1 3 6) '(2 1 7)) => execption! list not sorted
+
+(define merge
+    (lambda (l1 l2)
+    (if (and (sorted? l1 <) (sorted? l2 <))
+        (if (empty? l1)
+        l2
+        (if (empty? l2)
+        l1
+        (impl-merge l1 l2 '())))
+        (raise 'lists-not-sorted! #t))))
+
+
+(define impl-merge
+    (lambda (l1 l2 ml)
+    (if (empty? l1)
+        (if (empty? l2)
+            ml
+            (impl-merge l1 (cdr l2) (append ml (list (car l2)))))
+        (if (empty? l2)
+            (impl-merge (cdr l1) l2 (append ml (list (car l1))))
+            (if (> (car l1) (car l2))
+            (impl-merge l1 (cdr l2) (append ml (list (car l2))))
+            (impl-merge (cdr l1) l2 (append ml (list (car l1)))))))))
+
+
+
+    
+    
 
