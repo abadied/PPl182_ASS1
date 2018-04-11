@@ -102,6 +102,26 @@
 
 
 
-    
-    
+    ; assigmnment 4
+
+  ;  #lang racket
+; Signature: remove-adjacent-duplicates(l)
+; Type: [T * List(T) -> List(T)]
+; Purpose: remove duplicate elements that comes in a row
+; Pre-conditions: true
+; Tests:  (remove-adjacent-duplicates (list 1 2 3 4)) => '(1 2 3 4)
+;         (remove-adjacent-duplicates (list 1 1 3 3)) => '(1 3)
+;         (remove-adjacent-duplicates '(y a b b a d a b b a d o o)) => '(y a b a d a b a d o)
+;         (remove-adjacent-duplicates '(yeah yeah yeah)) => '(yeah)
+;         (remove-adjacent-duplicates (list )) => '()
+
+(define remove-adjacent-duplicates
+  (lambda (l)
+    (if(empty? l)
+    l
+    (if(null? (cdr l))
+       l
+       (if (eqv? (car l) (cadr l))
+            (remove-adjacent-duplicates(cdr l))
+       (cons (car l)(remove-adjacent-duplicates (cdr l))))))))
 
