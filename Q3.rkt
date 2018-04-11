@@ -107,8 +107,8 @@
   ;  #lang racket
 ; Signature: remove-adjacent-duplicates(l)
 ; Type: [T * List(T) -> List(T)]
-; Purpose: remove duplicate elements that comes in a row
-; Pre-conditions: true
+; Purpose: reduced any sequence of repeated elements to a single element
+; Pre-conditions:
 ; Tests:  (remove-adjacent-duplicates (list 1 2 3 4)) => '(1 2 3 4)
 ;         (remove-adjacent-duplicates (list 1 1 3 3)) => '(1 3)
 ;         (remove-adjacent-duplicates '(y a b b a d a b b a d o o)) => '(y a b a d a b a d o)
