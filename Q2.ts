@@ -229,6 +229,9 @@ interface videos{
     id: number;
     title: string;
     boxarts: Array<boxart>;
+    url: string;
+    rating: number;
+    bookmark: {id? : number, time?: number}[];
 };
 
 interface changed_videos{
@@ -274,8 +277,9 @@ let movielist1: Array<movie> = [
                     { width: 150, height: 200, url: "http://cdn-0.nflximg.com/images/2891/DieHard150.jpg" },
                     { width: 200, height: 200, url: "http://cdn-0.nflximg.com/images/2891/DieHard200.jpg" }
                 ],
-                // "url": "http://api.netflix.com/catalog/titles/movies/70111470",
-                // "rating": 4.0,
+                "url": "http://api.netflix.com/catalog/titles/movies/70111470",
+                "rating": 4.0,
+                "bookmark": []
             },
             {
                 "id": 654356453,
@@ -285,8 +289,9 @@ let movielist1: Array<movie> = [
                     { width: 150, height: 200, url: "http://cdn-0.nflximg.com/images/2891/BadBoys150.jpg" }
 
                 ],
-                // "url": "http://api.netflix.com/catalog/titles/movies/70111470",
-                // "rating": 5.0,
+                "url": "http://api.netflix.com/catalog/titles/movies/70111470",
+                "rating": 5.0,
+                "bookmark": [{ id: 432534, time: 65876586 }]
             }
         ]
     },
@@ -300,8 +305,9 @@ let movielist1: Array<movie> = [
                     { width: 150, height: 200, url: "http://cdn-0.nflximg.com/images/2891/TheChamber150.jpg" },
                     { width: 200, height: 200, url: "http://cdn-0.nflximg.com/images/2891/TheChamber200.jpg" }
                 ],
-                // "url": "http://api.netflix.com/catalog/titles/movies/70111470",
-                // "rating": 4.0,
+                "url": "http://api.netflix.com/catalog/titles/movies/70111470",
+                "rating": 4.0,
+                "bookmark": []
             },
             {
                 "id": 675465,
@@ -311,8 +317,9 @@ let movielist1: Array<movie> = [
                     { width: 150, height: 200, url: "http://cdn-0.nflximg.com/images/2891/Fracture150.jpg" },
                     { width: 300, height: 200, url: "http://cdn-0.nflximg.com/images/2891/Fracture300.jpg" }
                 ],
-                // "url": "http://api.netflix.com/catalog/titles/movies/70111470",
-                // "rating": 5.0,
+                "url": "http://api.netflix.com/catalog/titles/movies/70111470",
+                "rating": 5.0,
+                "bookmark": [{ id: 432534, time: 65876586 }]
             }
         ]
     }
@@ -331,8 +338,9 @@ let movielist2: Array<movie> = [
                     { width: 150, height: 200, url: "http://cdn-0.nflximg.com/images/2891/DieHard150.jpg" },
                     { width: 200, height: 200, url: "http://cdn-0.nflximg.com/images/2891/DieHard200.jpg" }
                 ],
-                // "url": "http://api.netflix.com/catalog/titles/movies/70111470",
-                // "rating": 5.0,
+                "url": "http://api.netflix.com/catalog/titles/movies/70111470",
+                "rating": 5.0,
+                "bookmark": []
                 
             },
             {
@@ -343,8 +351,9 @@ let movielist2: Array<movie> = [
                     { width: 150, height: 200, url: "http://cdn-0.nflximg.com/images/2891/BadBoys150.jpg" }
 
                 ],
-                // "url": "http://api.netflix.com/catalog/titles/movies/70111470",
-                // "rating": 5.0,
+                "url": "http://api.netflix.com/catalog/titles/movies/70111470",
+                "rating": 5.0,
+                "bookmark": [{ id: 432534, time: 65876586 }]
             }
         ]
     },
