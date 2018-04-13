@@ -38,6 +38,13 @@
                     (count-syllables-impl (cdr l) counter 1))   
                 (count-syllables-impl (cdr l) counter 0)))))
 
+; Tests implementation:
+; (equal? 2 (count-syllables '(s o a r i n g)))
+; (equal? 1 (count-syllables '(b e e p)))
+; (equal? 2 (count-syllables '(e d e n)))
+; (equal? 3 (count-syllables '(hello world)))
+; (equal? 0 (count-syllables '()))
+
 ; assignment2
 
 ; Signature: sorted?(l pro) 
@@ -64,6 +71,15 @@
             (if (pro curr (car l))
                 (impl-sorted? (cdr l) (car l) pro)
                 #f))))
+
+; Tests implementation: 
+; (equal? #t (sorted? '(1 3 8) <))
+; (equal? #t (sorted? '(9 11 33 42) <))
+; (equal? #t (sorted? '() >))
+; (equal? #t (sorted? '(1) >))
+; (equal? #t (sorted? '(3 2 1) >))
+; (equal? #f (sorted? '(3 2 1) <))
+
 
 ; assignement3
 
@@ -97,23 +113,28 @@
         (if (empty? l2)
             (impl-merge (cdr l1) l2 (append ml (list (car l1))))
             (if (> (car l1) (car l2))
-            (impl-merge l1 (cdr l2) (append ml (list (car l2))))
-            (impl-merge (cdr l1) l2 (append ml (list (car l1)))))))))
+                (impl-merge l1 (cdr l2) (append ml (list (car l2))))
+                (impl-merge (cdr l1) l2 (append ml (list (car l1)))))))))
+
+; Tests implementation: 
+; (equal? '(1 2 3 5 6 8) (merge '(1 3 8) '(2 5 6)))
+; (equal? '(2 9 11 33 42 70 90) (merge '(9 11 33 42) '(2 70 90)))
+; (equal? '(2) (merge '() '(2)))
+; (equal? '() (merge '() '()))
+; (merge '(1 3 6) '(2 1 7))) ; Throws exception
 
 
+; assigmnment 4
 
-    ; assigmnment 4
-
-  ;  #lang racket
 ; Signature: remove-adjacent-duplicates(l)
-; Type: [T * List(T) -> List(T)]
+; Type: [List(T) -> List(T)]
 ; Purpose: reduced any sequence of repeated elements to a single element
 ; Pre-conditions:
-; Tests:  (remove-adjacent-duplicates (list 1 2 3 4)) => '(1 2 3 4)
-;         (remove-adjacent-duplicates (list 1 1 3 3)) => '(1 3)
+; Tests:  (remove-adjacent-duplicates '(1 2 3 4)) => '(1 2 3 4)
+;         (remove-adjacent-duplicates '(1 1 3 3)) => '(1 3)
 ;         (remove-adjacent-duplicates '(y a b b a d a b b a d o o)) => '(y a b a d a b a d o)
 ;         (remove-adjacent-duplicates '(yeah yeah yeah)) => '(yeah)
-;         (remove-adjacent-duplicates (list )) => '()
+;         (remove-adjacent-duplicates '()) => '()
 
 (define remove-adjacent-duplicates
   (lambda (l)
@@ -125,3 +146,10 @@
             (remove-adjacent-duplicates(cdr l))
        (cons (car l)(remove-adjacent-duplicates (cdr l))))))))
 
+
+; Tests implementation:
+; (equal? '(1 2 3 4) (remove-adjacent-duplicates '(1 2 3 4)))
+; (equal? '(1 3) (remove-adjacent-duplicates '(1 1 3 3)))
+; (equal? '(y a b a d a b a d o) (remove-adjacent-duplicates '(y a b b a d a b b a d o o)))
+; (equal? '(yeah) (remove-adjacent-duplicates '(yeah yeah yeah)))
+; (equal? '() (remove-adjacent-duplicates '()))
