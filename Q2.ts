@@ -174,12 +174,8 @@ const GetKSubsets: <T>(obj_arr: Array<T>, k:number, curr_set: Array<T>, subsets:
     let counter:number =0;
     for (let obj of obj_arr) {
         counter++;
-       // console.log(subsets);
-       // console.log(curr_set);
-       // console.log("--");
         let loc_curr_set:Array<T>=curr_set.slice(0,curr_set.length);
         loc_curr_set.push(obj);
-        //console.log(loc_curr_set);
         if ( k === 0){
             subsets.push(curr_set);
             break;
