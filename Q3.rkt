@@ -114,13 +114,16 @@
             (impl-merge (cdr l1) l2 (append ml (list (car l1))))
             (if (> (car l1) (car l2))
                 (impl-merge l1 (cdr l2) (append ml (list (car l2))))
-                (impl-merge (cdr l1) l2 (append ml (list (car l1)))))))))
+                (if (= (car l1) (car l2))
+                    (impl-merge (cdr l1) (cdr l2) (append ml (list (car l2))))
+                    (impl-merge (cdr l1) l2 (append ml (list (car l1))))))))))
 
 ; Tests implementation: 
 ; (equal? '(1 2 3 5 6 8) (merge '(1 3 8) '(2 5 6)))
 ; (equal? '(2 9 11 33 42 70 90) (merge '(9 11 33 42) '(2 70 90)))
 ; (equal? '(2) (merge '() '(2)))
 ; (equal? '() (merge '() '()))
+; (equal? '(1 2 3 5 6) (merge '(1 2 3) '(2 5 6)))
 ; (merge '(1 3 6) '(2 1 7))) ; Throws exception
 
 
